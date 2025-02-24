@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
-import org.apache.coyote.BadRequestException;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +40,14 @@ public class StoriaMedicaController {
     }
 
     @GetMapping("/{pazienteId}")
-    public StoriaMedicaDTO ottieniStoriaMedica(@PathVariable String pazienteId) throws BadRequestException {
+    public StoriaMedicaDTO ottieniStoriaMedica(@PathVariable String pazienteId) throws Exception {
     	System.out.println("SIAMO IN OTTIENI STORIA MEDICA");
 
         ObjectId pazienteIdObj;
         try {
             pazienteIdObj = idHelper.stringToObjectId(pazienteId);
         } catch (IllegalArgumentException e) {
-            throw new BadRequestException("L'ID fornito non è valido: " + pazienteId);
+            throw new Exception("L'ID fornito non è valido: " + pazienteId);
         }
 
         StoriaMedica storiaMedica = storiaMedicaRepository.findByPazienteId(pazienteIdObj);
