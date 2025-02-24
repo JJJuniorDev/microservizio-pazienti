@@ -14,7 +14,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 		"Services",
 		"Controller",
 		"Model",
-		"Helpers"
+		"Helpers",
+		"config"
 		})
 @EnableMongoRepositories(basePackages = "Repository")
 public class PazientiStart {
